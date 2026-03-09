@@ -12,7 +12,7 @@ nextflow_process {
             script "modules/local/adata/unify/main.nf"
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [id: 'SRR28679756'],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true)
                     ], [
@@ -22,11 +22,12 @@ nextflow_process {
                 )
                 input[1] = 'sample'
                 input[2] = ''
-                input[3] = 'unknown'
-                input[4] = 'index'
-                input[5] = 'X'
-                input[6] = 'make_unique'
-                input[7] = false
+                input[3] = ''
+                input[4] = 'unknown'
+                input[5] = 'index'
+                input[6] = 'X'
+                input[7] = 'make_unique'
+                input[8] = false
                 """
             }
         }

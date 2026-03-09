@@ -40,29 +40,29 @@
                         {
                             "id": "test"
                         },
-                        "test_neighbors.h5ad:md5,8c37445ef7f23300a624b7985b94f959"
+                        "test_neighbors.h5ad:md5,4c624b547601d24b9cb288addef9e713"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,b3fde5e8f400f60813968cef43dfb7b0"
+                    "versions.yml:md5,e6573bada1eae3946054f4ba97861912"
                 ],
                 "h5ad": [
                     [
                         {
                             "id": "test"
                         },
-                        "test_neighbors.h5ad:md5,8c37445ef7f23300a624b7985b94f959"
+                        "test_neighbors.h5ad:md5,4c624b547601d24b9cb288addef9e713"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,b3fde5e8f400f60813968cef43dfb7b0"
+                    "versions.yml:md5,e6573bada1eae3946054f4ba97861912"
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2025-08-01T13:24:52.214682752"
+        "timestamp": "2026-01-25T17:16:11.783671635"
     }
 }

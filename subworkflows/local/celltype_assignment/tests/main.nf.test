@@ -12,17 +12,17 @@ nextflow_workflow {
         when {
             params {
                 outdir = "$outputDir"
-                celltypist_model = "Adult_COVID19_PBMC"
-                celldex_reference = "https://raw.githubusercontent.com/nf-core/test-datasets/scdownstream/singleR/references.csv"
             }
             workflow {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true),
                         "index"
                     ]
                 )
+                input[1] = "https://raw.githubusercontent.com/nf-core/test-datasets/scdownstream/singleR/references.csv"
+                input[2] = "Adult_COVID19_PBMC"
                 """
             }
         }
@@ -44,17 +44,17 @@ nextflow_workflow {
         when {
             params {
                 outdir = "$outputDir"
-                celltypist_model = "Adult_COVID19_PBMC"
-                celldex_reference = "https://raw.githubusercontent.com/nf-core/test-datasets/scdownstream/singleR/references.csv"
             }
             workflow {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true),
                         "index"
                     ]
                 )
+                input[1] = "https://raw.githubusercontent.com/nf-core/test-datasets/scdownstream/singleR/references.csv"
+                input[2] = "Adult_COVID19_PBMC"
                 """
             }
         }

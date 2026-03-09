@@ -18,7 +18,14 @@ prefix = "${prefix}"
 n_hvgs = int("${n_hvgs}")
 batch_key = "${batch_key}"
 
-if adata.n_vars > n_hvgs and n_hvgs >= 0:
+# Remove excluded genes from the anndata prior to identifying highly variable genes
+if "${excluded_genes}":
+    with open("${excluded_genes}", "r") as f:
+        excluded_genes = [line.strip() for line in f if line.strip()]
+    mask = ~adata.var_names.isin(excluded_genes)
+    adata = adata[:, mask].copy()
+
+if adata.n_vars > n_hvgs:
     kwargs = {}
 
     if batch_key:

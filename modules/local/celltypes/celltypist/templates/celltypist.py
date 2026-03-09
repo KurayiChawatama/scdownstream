@@ -49,6 +49,10 @@ if symbol_col != "index" and symbol_col:
         raise ValueError(f"Symbol column {symbol_col} not found in adata.var.columns")
     adata_celltypist.var_names = adata_celltypist.var[symbol_col]
 
+# celltypist expects a string index, because it will make unique names by appending "-1", "-2"
+# to duplicates if necessary. Cast other types (e.g. CategoricalIndex) to str:
+adata_celltypist.var_names = adata_celltypist.var_names.astype(str)
+
 df_list = []
 
 for model in models:

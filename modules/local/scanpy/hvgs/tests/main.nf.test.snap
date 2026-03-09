@@ -7,36 +7,36 @@
                         {
                             "id": "test"
                         },
-                        "test_hvg.h5ad:md5,a2fa17817c75d3e1918220d195e49101"
+                        "test_hvg.h5ad:md5,f1cfc42d33cf47fb46652e2f12d06da1"
                     ]
                 ],
                 "1": [
                     "test_hvg.pkl:md5,6e7304cb50e936bf78b69ad70b29495e"
                 ],
                 "2": [
-                    "versions.yml:md5,b2cac28d98d45ab02ed7d68691c897e7"
+                    "versions.yml:md5,0dd6121b661ca9111145ac517cbdbac6"
                 ],
                 "h5ad": [
                     [
                         {
                             "id": "test"
                         },
-                        "test_hvg.h5ad:md5,a2fa17817c75d3e1918220d195e49101"
+                        "test_hvg.h5ad:md5,f1cfc42d33cf47fb46652e2f12d06da1"
                     ]
                 ],
                 "var": [
                     "test_hvg.pkl:md5,6e7304cb50e936bf78b69ad70b29495e"
                 ],
                 "versions": [
-                    "versions.yml:md5,b2cac28d98d45ab02ed7d68691c897e7"
+                    "versions.yml:md5,0dd6121b661ca9111145ac517cbdbac6"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.2"
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2025-06-03T07:49:44.289973123"
+        "timestamp": "2026-01-25T17:10:44.214447815"
     },
     "Should run without a specified number of HVGs": {
         "content": [
@@ -46,36 +46,36 @@
                         {
                             "id": "test"
                         },
-                        "test_hvg.h5ad:md5,bdebdfe3f16920230deabc6852c02284"
+                        "test_hvg.h5ad:md5,a8c70cd2c88e801de037f181e6830997"
                     ]
                 ],
                 "1": [
                     "test_hvg.pkl:md5,82f4f37286430dbfbe76a531a53b867d"
                 ],
                 "2": [
-                    "versions.yml:md5,b2cac28d98d45ab02ed7d68691c897e7"
+                    "versions.yml:md5,0dd6121b661ca9111145ac517cbdbac6"
                 ],
                 "h5ad": [
                     [
                         {
                             "id": "test"
                         },
-                        "test_hvg.h5ad:md5,bdebdfe3f16920230deabc6852c02284"
+                        "test_hvg.h5ad:md5,a8c70cd2c88e801de037f181e6830997"
                     ]
                 ],
                 "var": [
                     "test_hvg.pkl:md5,82f4f37286430dbfbe76a531a53b867d"
                 ],
                 "versions": [
-                    "versions.yml:md5,b2cac28d98d45ab02ed7d68691c897e7"
+                    "versions.yml:md5,0dd6121b661ca9111145ac517cbdbac6"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.2"
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2025-06-03T07:49:24.034459241"
+        "timestamp": "2026-01-25T17:10:20.753868268"
     },
     "Should run without failures - stub": {
         "content": [
@@ -115,5 +115,44 @@
             "nextflow": "25.04.2"
         },
         "timestamp": "2025-06-03T07:49:56.630416945"
+    },
+    "Should run with a list of genes excluded from integration": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_hvg.h5ad:md5,4d3f42a1201d720b01d15133df67727d"
+                    ]
+                ],
+                "1": [
+                    "test_hvg.pkl:md5,e7432bf749f3ff633369d0b3199a24c4"
+                ],
+                "2": [
+                    "versions.yml:md5,0dd6121b661ca9111145ac517cbdbac6"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_hvg.h5ad:md5,4d3f42a1201d720b01d15133df67727d"
+                    ]
+                ],
+                "var": [
+                    "test_hvg.pkl:md5,e7432bf749f3ff633369d0b3199a24c4"
+                ],
+                "versions": [
+                    "versions.yml:md5,0dd6121b661ca9111145ac517cbdbac6"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T17:11:07.249667722"
     }
 }

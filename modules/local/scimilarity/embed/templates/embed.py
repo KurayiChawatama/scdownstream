@@ -31,7 +31,7 @@ adata_raw.obsm["X_emb"] = embeddings
 # Write the output
 adata_raw.write_h5ad("${prefix}.h5ad")
 df = pd.DataFrame(embeddings, index=adata_raw.obs_names)
-df.to_pickle("X_${prefix}.pkl")
+df.to_pickle("X_${meta.id}.pkl")
 
 versions = {
     "${task.process}": {

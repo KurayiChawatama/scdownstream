@@ -4,8 +4,8 @@ process SCANPY_HARMONY {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-            ? 'oras://community.wave.seqera.io/library/harmonypy_pyyaml_scanpy:0313a38a736a3dbb'
-            : 'community.wave.seqera.io/library/harmonypy_pyyaml_scanpy:3da6a375ff8a76ed'}"
+            ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/6f/6fc2d5f7918879823dcda31eb6e0d22131262c4e00bd36ca8b687150a661d5ba/data'
+            : 'community.wave.seqera.io/library/harmonypy_pyyaml_scanpy:f6cc57196369fb1e'}"
 
     input:
     tuple val(meta), path(h5ad)

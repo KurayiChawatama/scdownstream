@@ -1,0 +1,80 @@
+{
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_liana.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "test_liana.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_liana.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "uns": [
+                    "test_liana.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-01-10T22:29:55.568090889"
+    },
+    "Should run without failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_liana.h5ad:md5,a1db1b498ec91a03d770887f40624ddf"
+                    ]
+                ],
+                "1": [
+                    "test_liana.pkl:md5,14582f2e14dcc08038f2bd67241ae5a4"
+                ],
+                "2": [
+                    "versions.yml:md5,44f181a9b2e8bebcda641e7400af14cd"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_liana.h5ad:md5,a1db1b498ec91a03d770887f40624ddf"
+                    ]
+                ],
+                "uns": [
+                    "test_liana.pkl:md5,14582f2e14dcc08038f2bd67241ae5a4"
+                ],
+                "versions": [
+                    "versions.yml:md5,44f181a9b2e8bebcda641e7400af14cd"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T17:12:18.187944227"
+    }
+}

@@ -7,7 +7,7 @@
                         {
                             "id": "combined"
                         },
-                        "combined_outer.h5ad:md5,bf3c0606fc3720dbd3dff54dfef9f655"
+                        "combined_outer.h5ad:md5,d03dc674beb17ce07839ea78791fec77"
                     ]
                 ],
                 "1": [
@@ -15,7 +15,7 @@
                         {
                             "id": "combined"
                         },
-                        "combined_inner.h5ad:md5,bf3c0606fc3720dbd3dff54dfef9f655"
+                        "combined_inner.h5ad:md5,d03dc674beb17ce07839ea78791fec77"
                     ]
                 ],
                 "2": [
@@ -23,21 +23,21 @@
                         {
                             "id": "combined"
                         },
-                        "combined_integrate.h5ad:md5,bf3c0606fc3720dbd3dff54dfef9f655"
+                        "combined_integrate.h5ad:md5,d03dc674beb17ce07839ea78791fec77"
                     ]
                 ],
                 "3": [
                     "gene_intersection.pkl:md5,c0c997e228a2aafb9af01fe06fb3ab28"
                 ],
                 "4": [
-                    "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466"
+                    "versions.yml:md5,0969ffe932aa0c5a2a8207724eac2e71"
                 ],
                 "inner": [
                     [
                         {
                             "id": "combined"
                         },
-                        "combined_inner.h5ad:md5,bf3c0606fc3720dbd3dff54dfef9f655"
+                        "combined_inner.h5ad:md5,d03dc674beb17ce07839ea78791fec77"
                     ]
                 ],
                 "integrate": [
@@ -45,7 +45,7 @@
                         {
                             "id": "combined"
                         },
-                        "combined_integrate.h5ad:md5,bf3c0606fc3720dbd3dff54dfef9f655"
+                        "combined_integrate.h5ad:md5,d03dc674beb17ce07839ea78791fec77"
                     ]
                 ],
                 "intersect_genes": [
@@ -56,19 +56,19 @@
                         {
                             "id": "combined"
                         },
-                        "combined_outer.h5ad:md5,bf3c0606fc3720dbd3dff54dfef9f655"
+                        "combined_outer.h5ad:md5,d03dc674beb17ce07839ea78791fec77"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466"
+                    "versions.yml:md5,0969ffe932aa0c5a2a8207724eac2e71"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.2"
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2025-06-05T00:16:51.379209007"
+        "timestamp": "2026-01-18T21:23:01.652854058"
     },
     "Should run with base": {
         "content": [
@@ -78,7 +78,7 @@
                         {
                             "id": "SRR28679756"
                         },
-                        "SRR28679756_outer.h5ad:md5,317c914790987bf102950e0faf38d909"
+                        "SRR28679756_outer.h5ad:md5,4b877999213cc0272cbfe601f371c2e1"
                     ]
                 ],
                 "1": [
@@ -86,7 +86,7 @@
                         {
                             "id": "SRR28679756"
                         },
-                        "SRR28679756_inner.h5ad:md5,317c914790987bf102950e0faf38d909"
+                        "SRR28679756_inner.h5ad:md5,4b877999213cc0272cbfe601f371c2e1"
                     ]
                 ],
                 "2": [
@@ -94,21 +94,21 @@
                         {
                             "id": "SRR28679756"
                         },
-                        "SRR28679756_integrate.h5ad:md5,c5a71a3e6c04514d55b22dc0e2a3c810"
+                        "SRR28679756_integrate.h5ad:md5,f39b2e07df5c912a8db36e380368f83f"
                     ]
                 ],
                 "3": [
                     "gene_intersection.pkl:md5,c0c997e228a2aafb9af01fe06fb3ab28"
                 ],
                 "4": [
-                    "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466"
+                    "versions.yml:md5,0969ffe932aa0c5a2a8207724eac2e71"
                 ],
                 "inner": [
                     [
                         {
                             "id": "SRR28679756"
                         },
-                        "SRR28679756_inner.h5ad:md5,317c914790987bf102950e0faf38d909"
+                        "SRR28679756_inner.h5ad:md5,4b877999213cc0272cbfe601f371c2e1"
                     ]
                 ],
                 "integrate": [
@@ -116,7 +116,7 @@
                         {
                             "id": "SRR28679756"
                         },
-                        "SRR28679756_integrate.h5ad:md5,c5a71a3e6c04514d55b22dc0e2a3c810"
+                        "SRR28679756_integrate.h5ad:md5,f39b2e07df5c912a8db36e380368f83f"
                     ]
                 ],
                 "intersect_genes": [
@@ -127,19 +127,19 @@
                         {
                             "id": "SRR28679756"
                         },
-                        "SRR28679756_outer.h5ad:md5,317c914790987bf102950e0faf38d909"
+                        "SRR28679756_outer.h5ad:md5,4b877999213cc0272cbfe601f371c2e1"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,b38e6675a7438ac7fd9dd79e2fc5c466"
+                    "versions.yml:md5,0969ffe932aa0c5a2a8207724eac2e71"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.2"
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2025-06-01T20:29:01.17035464"
+        "timestamp": "2026-01-18T21:23:52.571329858"
     },
     "Should run without base - stub": {
         "content": [

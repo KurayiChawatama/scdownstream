@@ -2,6 +2,7 @@
 
 import platform
 
+import numpy as np
 import pandas as pd
 import anndata as ad
 import yaml
@@ -17,6 +18,11 @@ emb = pd.concat([
 ], axis=0)
 
 adata_combined.obsm["X_emb"] = emb.loc[adata_combined.obs_names].to_numpy()
+
+# Drop all rows with NaN in the embeddings
+# These only occur when during the creation of the base anndata there were cells with no expression in the highly variable genes
+# Needs to be done because downstream processes (e.g. clustering) require the embeddings to be complete
+adata_combined = adata_combined[~np.isnan(adata_combined.obsm["X_emb"]).any(axis=1)]
 
 if integration == "scanvi":
     labels = pd.concat([

@@ -10,6 +10,7 @@ import numpy as np
 from scipy.sparse import csr_matrix
 import platform
 import yaml
+import importlib.metadata
 
 # Function borrowed from https://github.com/icbi-lab/luca/blob/5ffb0a4671e9c288b10e73de18d447ee176bef1d/lib/scanpy_helper_submodule/scanpy_helpers/util.py#L122C1-L135C21
 def aggregate_duplicate_var(adata, aggr_fun=np.mean):
@@ -18,7 +19,8 @@ def aggregate_duplicate_var(adata, aggr_fun=np.mean):
     if len(duplicated_var):
         for var in duplicated_var:
             mask = adata.var_names == var
-            var_aggr = aggr_fun(adata.X[:, mask], axis=1)[:, np.newaxis]
+            X_slice = adata.X[:, mask].toarray()
+            var_aggr = aggr_fun(X_slice, axis=1)[:, np.newaxis]
             adata.X[:, mask] = np.repeat(var_aggr, np.sum(mask), axis=1)
 
         adata_dedup = adata[:, retain_var].copy()
@@ -30,7 +32,7 @@ def to_Florent_case(s: str):
     corrected = s.lower().strip()
 
     if corrected in ["na", "nan", "null", "unknown"]:
-        return "unknown"
+        return "Unknown"
 
     corrected = s \
         .replace(" ", "_") \
@@ -47,7 +49,7 @@ def to_Florent_case(s: str):
     corrected = corrected.strip(" _")
 
     if not corrected:
-        return "unknown"
+        return "Unknown"
 
     return corrected.capitalize()
 
@@ -69,6 +71,9 @@ adata.X = csr_matrix(adata.X.astype(np.float32))
 # Unify gene symbols
 symbol_col = "${symbol_col}"
 
+label_col = "${label_col}"
+unknown_label = "${unknown_label}"
+
 if symbol_col != "index":
     assert symbol_col in adata.var.columns, f"Symbol column {symbol_col} not found in var table"
     adata.var["original_index"] = adata.var.index
@@ -77,6 +82,8 @@ if symbol_col != "index":
 if "${aggregate_isoforms}" == "true":
     # Remove all numeric suffixes following a dot, keep non-numeric suffixes
     adata.var_names = adata.var_names.str.replace(r'\\.\\d+', '', regex=True)
+
+adata.var.index = adata.var.index.astype(str)
 
 # Deal with duplicate genes
 method = "${duplicate_var_resolution}"
@@ -100,12 +107,9 @@ if batch_col != "batch":
     if "batch" in adata.obs:
         raise ValueError("The batch column already exists.")
     adata.obs["batch"] = adata.obs[batch_col]
-    del adata.obs[batch_col]
+    if batch_col not in [label_col, "sample"]:
+        del adata.obs[batch_col]
 adata.obs["batch"] = adata.obs["batch"].astype(str).astype("category")
-
-# Unify labels
-label_col = "${label_col}"
-unknown_label = "${unknown_label}"
 
 if label_col:
     if label_col not in adata.obs:
@@ -130,8 +134,32 @@ if label_col:
 else:
     if "label" in adata.obs:
         raise ValueError("The label column already exists.")
-    adata.obs["label"] = "unknown"
+    adata.obs["label"] = "Unknown"
 adata.obs["label"] = adata.obs["label"].astype("category")
+
+# Unify conditions
+condition_col = "${condition_col}"
+
+if condition_col:
+    if condition_col not in adata.obs:
+        raise ValueError("The specified condition column does not exist in the dataset. Existing columns: " + ", ".join(adata.obs.columns))
+
+    if condition_col != "condition":
+        if "condition" in adata.obs:
+            raise ValueError("The condition column already exists.")
+        adata.obs["condition"] = adata.obs[condition_col]
+        del adata.obs[condition_col]
+
+    # Replace all NaN values with "unknown"
+    adata.obs["condition"] = adata.obs["condition"].astype(str)
+    adata.obs["condition"] = adata.obs["condition"].fillna("unknown")
+    adata.obs["condition"] = adata.obs["condition"].map(to_Florent_case)
+    adata.obs["condition"] = adata.obs["condition"].astype("category")
+else:
+    if "condition" in adata.obs:
+        raise ValueError("The condition column already exists.")
+    adata.obs["condition"] = "Unknown"
+adata.obs["condition"] = adata.obs["condition"].astype("category")
 
 # Add "sample" column
 if "sample" in adata.obs and not adata.obs["sample"].equals("${meta.id}"):
@@ -143,6 +171,13 @@ adata.obs["sample"] = adata.obs["sample"].astype("category")
 adata.obs["batch"] = adata.obs["batch"].astype(str) + "_" + adata.obs["sample"].astype(str)
 adata.obs["batch"] = adata.obs["batch"].astype("category")
 
+# Ensure no named indices remain (nft-anndata doesn't support them)
+# TODO: Remove this after nft-anndata plugin is updated to support named indices
+if adata.var.index.name is not None:
+    adata.var.index.name = None
+if adata.obs.index.name is not None:
+    adata.obs.index.name = None
+
 adata.write_h5ad("${prefix}.h5ad")
 
 # Versions
@@ -150,7 +185,7 @@ adata.write_h5ad("${prefix}.h5ad")
 versions = {
     "${task.process}": {
         "python": platform.python_version(),
-        "anndata": ad.__version__,
+        "anndata": importlib.metadata.version('anndata'),
         "scipy": scipy.__version__,
         "numpy": np.__version__
     }

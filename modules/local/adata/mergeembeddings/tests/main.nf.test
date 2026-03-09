@@ -1,0 +1,117 @@
+nextflow_process {
+
+    name "Test Process ADATA_MERGEEMBEDDINGS"
+    script "modules/local/adata/mergeembeddings/main.nf"
+    process "ADATA_MERGEEMBEDDINGS"
+
+    tag "modules"
+    tag "modules_local"
+
+    test("Should merge scvi embeddings") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'scvi'],
+                    file(params.pipelines_testdata_base_path + '/intermediates/merge_embeddings/integrated_scvi.h5ad', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + '/intermediates/merge_embeddings/base_scvi.h5ad', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + '/intermediates/merge_embeddings/combined_scvi.h5ad', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            def filename = process.out.h5ad[0][1]
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() },
+                {
+                    with(anndata(filename)) {
+                        assert "X_emb" in obsm
+                        // Should have cells from both base (50) and integrated (30)
+                        assert obs.rownames.size() == 80
+                    }
+                },
+                // obsm pickle should be created
+                { assert file(process.out.obsm[0]).name == "X_scvi.pkl" },
+                // obs pickle should NOT be created for non-scanvi
+                { assert process.out.obs.size() == 0 }
+            )
+        }
+
+    }
+
+    test("Should merge scanvi embeddings with labels") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'scanvi'],
+                    file(params.pipelines_testdata_base_path + '/intermediates/merge_embeddings/integrated_scanvi.h5ad', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + '/intermediates/merge_embeddings/base_scanvi.h5ad', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + '/intermediates/merge_embeddings/combined_scanvi.h5ad', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            def filename = process.out.h5ad[0][1]
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() },
+                {
+                    with(anndata(filename)) {
+                        assert "X_emb" in obsm
+                        assert "label:scANVI" in obs.colnames
+                        assert obs.rownames.size() == 80
+                    }
+                },
+                // obsm pickle should be created
+                { assert file(process.out.obsm[0]).name == "X_scanvi.pkl" },
+                // obs pickle SHOULD be created for scanvi
+                { assert file(process.out.obs[0]).name == "scanvi.pkl" }
+            )
+        }
+
+    }
+
+    test("Should run without failures - stub") {
+
+        options '-stub'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'scvi'],
+                    file(params.pipelines_testdata_base_path + '/intermediates/merge_embeddings/integrated_scvi.h5ad', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + '/intermediates/merge_embeddings/base_scvi.h5ad', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + '/intermediates/merge_embeddings/combined_scvi.h5ad', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

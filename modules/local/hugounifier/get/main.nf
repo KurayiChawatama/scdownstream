@@ -1,19 +1,18 @@
 process HUGOUNIFIER_GET {
-    tag "$meta.id"
+    tag "${meta.id}"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/pip_hugo-unifier:c031178467b3e4b6':
-        'community.wave.seqera.io/library/pip_hugo-unifier:3ece8804680ed056' }"
+    container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b6/b60674d48ce2e14fec6d6323687b1188e0fe71859f5c82332ea303db69a122d2/data'
+        : 'community.wave.seqera.io/library/pip_hugo-unifier:bedd626d591c5003'}"
 
     input:
     tuple val(meta), val(names), path(h5ads, stageAs: 'input/file_?.h5ad')
 
     output:
     tuple val(meta), path("${meta.id}/*.csv"), emit: changes
-    path("versions.yml")                     , emit: versions
-
+    path ("versions.yml")                    , emit: versions
 
     script:
     def namedFiles = [[names].flatten(), [h5ads].flatten()].transpose()

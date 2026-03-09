@@ -4,4 +4,4 @@ channels:
 dependencies:
   - pip
   - pip:
-      - hugo-unifier==0.2.8
+      - hugo-unifier==0.3.1

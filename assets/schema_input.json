@@ -59,6 +59,12 @@
                 "errorMessage": "Label column needs to start with a letter and can contain letters, numbers, underlines and dashes.",
                 "meta": ["label_col"]
             },
+            "condition_col": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+                "errorMessage": "Condition column needs to start with a letter and can contain letters, numbers, underlines and dashes.",
+                "meta": ["condition_col"]
+            },
             "unknown_label": {
                 "type": "string",
                 "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
@@ -115,6 +121,17 @@
                 "default": 0,
                 "errorMessage": "Number of cells expected from the experimental design, used as input to cellbender.",
                 "meta": ["expected_cells"]
+            },
+            "ambient_correction": {
+                "type": "boolean",
+                "default": true,
+                "errorMessage": "'ambient_correction' must be a boolean.",
+                "meta": ["ambient_correction"]
+            },
+            "ambient_corrected_integration": {
+                "type": "boolean",
+                "errorMessage": "'ambient_corrected_integration' must be a boolean.",
+                "meta": ["ambient_corrected_integration"]
             }
         },
         "anyOf": [

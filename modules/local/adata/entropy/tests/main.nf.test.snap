@@ -58,11 +58,11 @@
                         {
                             "id": "test"
                         },
-                        "test_entropy.h5ad:md5,fcb737603f514f4417d09c0a66b13e80"
+                        "test_entropy.h5ad:md5,0ddf3491267da3afcd7d49bfb601bc39"
                     ]
                 ],
                 "1": [
-                    "test_entropy.pkl:md5,a9fff140a3651204de06e77c3691eedd"
+                    "test_entropy.pkl:md5,0cce150308d3fd0a6b08795a68fea389"
                 ],
                 "2": [
                     
@@ -71,34 +71,34 @@
                     
                 ],
                 "4": [
-                    "versions.yml:md5,a9e6c712c3f0f7d6323e312384d7e922"
+                    "versions.yml:md5,fec1a6bc52548627507fb8d06e60da52"
                 ],
                 "h5ad": [
                     [
                         {
                             "id": "test"
                         },
-                        "test_entropy.h5ad:md5,fcb737603f514f4417d09c0a66b13e80"
+                        "test_entropy.h5ad:md5,0ddf3491267da3afcd7d49bfb601bc39"
                     ]
                 ],
                 "multiqc_files": [
                     
                 ],
                 "obs": [
-                    "test_entropy.pkl:md5,a9fff140a3651204de06e77c3691eedd"
+                    "test_entropy.pkl:md5,0cce150308d3fd0a6b08795a68fea389"
                 ],
                 "plots": [
                     
                 ],
                 "versions": [
-                    "versions.yml:md5,a9e6c712c3f0f7d6323e312384d7e922"
+                    "versions.yml:md5,fec1a6bc52548627507fb8d06e60da52"
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2025-08-01T13:31:01.089437435"
+        "timestamp": "2026-01-25T17:05:22.295034358"
     }
 }

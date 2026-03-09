@@ -15,7 +15,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.pipelines_testdata_base_path + '/misc/filtered_feature_bc_matrix.h5', checkIfExists: true)
                     ]
@@ -43,7 +43,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.pipelines_testdata_base_path + '/misc/filtered_feature_bc_matrix.h5', checkIfExists: true)
                     ]

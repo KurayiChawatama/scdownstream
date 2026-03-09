@@ -4,13 +4,14 @@ process ADATA_UNIFY {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'oras://community.wave.seqera.io/library/anndata_pyyaml:5f82ece6392dc30c'
-        : 'community.wave.seqera.io/library/anndata_pyyaml:b30e03a395613673'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/76/7612a78c6f49cfbeebf84c444ad314bf86da041588f3b0f14951e462e18a9228/data'
+        : 'community.wave.seqera.io/library/anndata_pyyaml:82c6914e861435f7'}"
 
     input:
     tuple val(meta), path(h5ad)
     val batch_col
     val label_col
+    val condition_col
     val unknown_label
     val symbol_col
     val counts_layer

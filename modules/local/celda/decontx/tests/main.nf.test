@@ -7,6 +7,41 @@ nextflow_process {
     tag "modules"
     tag "modules_local"
 
+    test("Should run without failures without batch column") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = channel.of([
+                        [ id: 'test' ],
+                        file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
+                        []
+                    ]
+                )
+                input[1] = []
+                input[2] = "X"
+                input[3] = "X"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(
+                // Hashing does not work due to this issue:
+                // https://github.com/scverse/anndataR/issues/272
+                process.out.versions,
+                file(process.out.h5ad.get(0).get(1)).name
+            ).match() }
+            )
+        }
+
+    }
+
     test("Should run without failures without raw - single batch") {
 
         when {
@@ -15,7 +50,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
                         []
@@ -23,6 +58,7 @@ nextflow_process {
                 )
                 input[1] = "sample"
                 input[2] = "X"
+                input[3] = "X"
                 """
             }
         }
@@ -49,7 +85,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/combined_filtered_matrix.h5ad', checkIfExists: true),
                         []
@@ -57,6 +93,7 @@ nextflow_process {
                 )
                 input[1] = "sample"
                 input[2] = "X"
+                input[3] = "X"
                 """
             }
         }
@@ -83,7 +120,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
                         []
@@ -91,6 +128,7 @@ nextflow_process {
                 )
                 input[1] = "sample"
                 input[2] = "X"
+                input[3] = "X"
                 """
             }
         }
@@ -112,7 +150,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_raw_matrix.h5ad', checkIfExists: true)
@@ -120,6 +158,7 @@ nextflow_process {
                 )
                 input[1] = "sample"
                 input[2] = "X"
+                input[3] = "X"
                 """
             }
         }
@@ -147,7 +186,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_raw_matrix.h5ad', checkIfExists: true)
@@ -155,6 +194,7 @@ nextflow_process {
                 )
                 input[1] = "sample"
                 input[2] = "X"
+                input[3] = "X"
                 """
             }
         }

@@ -12,7 +12,7 @@ nextflow_process {
             script "modules/local/scanpy/pca/main.nf"
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/combined_filtered_matrix.h5ad', checkIfExists: true)
                     ]
@@ -47,6 +47,7 @@ nextflow_process {
                 """
                 input[0] = SCANPY_LEIDEN.out.h5ad
                 input[1] = 100
+                input[2] = []
                 """
             }
         }

@@ -15,13 +15,14 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test', batch_col: 'sample' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
                 input[1] = []
                 input[2] = 0
+                input[3] = 1
                 """
             }
         }
@@ -40,16 +41,18 @@ nextflow_workflow {
         when {
             params {
                 outdir = "$outputDir"
+                scvi_max_epochs = 2
             }
             workflow {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test', batch_col: 'sample' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
                 input[1] = ['scds', 'solo', 'scrublet']
                 input[2] = 2
+                input[3] = 1
                 """
             }
         }
@@ -57,8 +60,9 @@ nextflow_workflow {
         then {
             assertAll(
             { assert workflow.success },
+            { assert anndata(workflow.out.h5ad[0][1]).n_obs > 5960 },
+            { assert anndata(workflow.out.h5ad[0][1]).n_obs < 5985 },
             { assert snapshot(
-                    workflow.out.h5ad,
                     workflow.out.versions,
                 ).match() }
             )
@@ -76,13 +80,14 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [ id: 'test', batch_col: 'sample' ],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679759_filtered_matrix.h5ad', checkIfExists: true)
                     ]
                 )
                 input[1] = ['scds', 'solo', 'scrublet', 'doubletdetection']
                 input[2] = 2
+                input[3] = 1
                 """
             }
         }

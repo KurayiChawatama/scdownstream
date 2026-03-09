@@ -4,25 +4,36 @@ include { CELLTYPES_CELLTYPIST } from '../../../modules/local/celltypes/celltypi
 
 workflow CELLTYPE_ASSIGNMENT {
     take:
-    ch_h5ad // channel: [ meta, h5ad, symbol_col ]
+    ch_h5ad           // channel: [ meta, h5ad, symbol_col ]
+    celldex_reference //   value: string
+    celltypist_model  //   value: string
 
     main:
-    ch_versions = Channel.empty()
-    ch_obs = Channel.empty()
+    ch_versions = channel.empty()
+    ch_obs = channel.empty()
 
-    if (params.celldex_reference ) {
-        SINGLER(
+    if (celldex_reference ) {
+        SINGLER (
             ch_h5ad,
-            Channel.fromList(samplesheetToList(params.celldex_reference, "${projectDir}/assets/schema_singler.json"))
+            channel.fromList(samplesheetToList(
+                celldex_reference,
+                "${projectDir}/assets/schema_singler.json")
+            )
         )
         ch_obs = ch_obs.mix(SINGLER.out.obs)
         ch_versions = ch_versions.mix(SINGLER.out.versions)
     }
 
-    if (params.celltypist_model) {
-        celltypist_models = Channel.value(params.celltypist_model.split(',').collect{ it -> it.trim() })
+    if (celltypist_model) {
+        celltypist_models = channel.value(celltypist_model
+            .split(',')
+            .collect{ it -> it.trim() }
+        )
 
-        CELLTYPES_CELLTYPIST(ch_h5ad, celltypist_models)
+        CELLTYPES_CELLTYPIST (
+            ch_h5ad,
+            celltypist_models
+        )
         ch_obs = ch_obs.mix(CELLTYPES_CELLTYPIST.out.obs)
         ch_versions = ch_versions.mix(CELLTYPES_CELLTYPIST.out.versions)
     }

@@ -57,7 +57,11 @@ sc <- autoEstCont(sc, doPlot = FALSE)
 out <- adjustCounts(sc, roundToInt = FALSE)
 
 # Update the original AnnData object with ambient layer
-adata\$layers[["${output_layer}"]] <- t(out)
+if ("${output_layer}" == "X") {
+    adata\$X <- t(out)
+} else {
+    adata\$layers[["${output_layer}"]] <- t(out)
+}
 
 # Save the output
 write_h5ad(adata, "${prefix}.h5ad")

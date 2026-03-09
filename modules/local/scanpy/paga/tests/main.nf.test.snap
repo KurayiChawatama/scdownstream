@@ -1,0 +1,116 @@
+{
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_paga.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "test_paga.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "test_paga_connectivities.npy:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "test_paga.png:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "test_paga_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "5": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_paga.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "multiqc_files": [
+                    "test_paga_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obsp": [
+                    "test_paga_connectivities.npy:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "plot": [
+                    "test_paga.png:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "uns": [
+                    "test_paga.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-01-10T22:22:14.395891088"
+    },
+    "Should run without failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_paga.h5ad:md5,edaa8a6fa44a68c91692e8304c9ab078"
+                    ]
+                ],
+                "1": [
+                    "test_paga.pkl:md5,8052c42ecf93568c201d2dc983d2842e"
+                ],
+                "2": [
+                    "test_paga_connectivities.npy:md5,8d91d6372e5328a981e8a3146a634ac7"
+                ],
+                "3": [
+                    "test_paga.png:md5,28a2ac3ae39ce894bc12462c36a7081f"
+                ],
+                "4": [
+                    "test_paga_mqc.json:md5,f8d739437aafd45f0463cdf0a5b3dda2"
+                ],
+                "5": [
+                    "versions.yml:md5,7d089d9c448b243744079651f98821b5"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_paga.h5ad:md5,edaa8a6fa44a68c91692e8304c9ab078"
+                    ]
+                ],
+                "multiqc_files": [
+                    "test_paga_mqc.json:md5,f8d739437aafd45f0463cdf0a5b3dda2"
+                ],
+                "obsp": [
+                    "test_paga_connectivities.npy:md5,8d91d6372e5328a981e8a3146a634ac7"
+                ],
+                "plot": [
+                    "test_paga.png:md5,28a2ac3ae39ce894bc12462c36a7081f"
+                ],
+                "uns": [
+                    "test_paga.pkl:md5,8052c42ecf93568c201d2dc983d2842e"
+                ],
+                "versions": [
+                    "versions.yml:md5,7d089d9c448b243744079651f98821b5"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-25T17:04:45.756137198"
+    }
+}

@@ -1,0 +1,66 @@
+nextflow_process {
+
+    name "Test Process ADATA_SPLITEMBEDDINGS"
+    script "modules/local/adata/splitembeddings/main.nf"
+    process "ADATA_SPLITEMBEDDINGS"
+
+    tag "modules"
+    tag "modules_local"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = channel.of([
+                        [id: 'test'],
+                        file(params.pipelines_testdata_base_path + '/extension_base/merged.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = ['scvi']
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Should run without failures - stub") {
+
+        options '-stub'
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = channel.of([
+                        [id: 'test'],
+                        file(params.pipelines_testdata_base_path + '/extension_base/merged.h5ad', checkIfExists: true)
+                    ]
+                )
+                input[1] = ['scvi']
+                """
+            }
+        }
+
+        then {
+            assertAll(
+            { assert process.success },
+            { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

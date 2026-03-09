@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import platform
+import importlib.metadata
 import anndata as ad
 import pandas as pd
 import yaml
@@ -14,7 +15,7 @@ adata.write_h5ad("${prefix}.h5ad")
 versions = {
     "${task.process}": {
         "python": platform.python_version(),
-        "anndata": ad.__version__,
+        "anndata": importlib.metadata.version("anndata"),
         "pandas": pd.__version__
     }
 }

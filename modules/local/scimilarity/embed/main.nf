@@ -23,4 +23,12 @@ process SCIMILARITY_EMBED {
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     template('embed.py')
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch "${prefix}.h5ad"
+    touch "X_${prefix}.pkl"
+    touch "versions.yml"
+    """
 }

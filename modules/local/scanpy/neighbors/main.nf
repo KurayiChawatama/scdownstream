@@ -4,8 +4,8 @@ process SCANPY_NEIGHBORS {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'oras://community.wave.seqera.io/library/python-igraph_scanpy:f3ad4bc653796b1b'
-        : 'community.wave.seqera.io/library/python-igraph_scanpy:e3d5b4ea56e99f52'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7e/7e8ccc771255d161988a15931fdc64fb637e43d65946a78697c5aceffa395902/data'
+        : 'community.wave.seqera.io/library/python-igraph_pyyaml_scanpy:cc0304f4731f72f9'}"
 
     input:
     tuple val(meta), path(h5ad, arity: 1)

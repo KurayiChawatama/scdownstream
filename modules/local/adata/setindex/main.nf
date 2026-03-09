@@ -4,14 +4,16 @@ process ADATA_SETINDEX {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'oras://community.wave.seqera.io/library/anndata_pyyaml:5f82ece6392dc30c'
-        : 'community.wave.seqera.io/library/anndata_pyyaml:b30e03a395613673'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/76/7612a78c6f49cfbeebf84c444ad314bf86da041588f3b0f14951e462e18a9228/data'
+        : 'community.wave.seqera.io/library/anndata_pyyaml:82c6914e861435f7'}"
 
     input:
     tuple val(meta), path(h5ad)
+    val axis
+    val column
 
     output:
-    tuple val(meta), path("*.h5ad"), emit: h5ad
+    tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
     path "versions.yml", emit: versions
 
     when:
@@ -19,11 +21,7 @@ process ADATA_SETINDEX {
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    column = task.ext.column ?: null
-    axis = task.ext.axis ?: "obs"
-    if (column == null) {
-        error("Column is required, use \"task.ext.column\" to set it!")
-    }
+
     if (!(axis in ["obs", "var"])) {
         error("Axis must be either 'obs' or 'var', but got '${axis}'! Use \"task.ext.axis\" to set it!")
     }

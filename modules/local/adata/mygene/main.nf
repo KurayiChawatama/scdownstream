@@ -4,8 +4,8 @@ process ADATA_MYGENE {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/mygene_anndata_pyyaml:b2cb83d7952ecb6f':
-        'community.wave.seqera.io/library/mygene_anndata_pyyaml:1ca543213544b265' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/95/95d94db7b6389558ec95d6ad737fd962d8ade08a2323f298c92afed4c240c177/data':
+        'community.wave.seqera.io/library/mygene_anndata_pyyaml:d9454f09fb1f98d5' }"
 
     input:
     tuple val(meta), path(h5ad)

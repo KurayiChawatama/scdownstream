@@ -4,8 +4,8 @@ process SCANPY_LEIDEN {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-            ? 'oras://community.wave.seqera.io/library/leidenalg_python-igraph_scanpy:8b9713e90ca62747'
-            : 'community.wave.seqera.io/library/leidenalg_python-igraph_scanpy:270d93d02d764f1a'}"
+            ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/27/2759e84e77c8aae8a8f32449a98394359615408bd272a59b3a18ba12c1c84cc0/data'
+            : 'community.wave.seqera.io/library/leidenalg_python-igraph_pyyaml_scanpy:4936fa196b5f4340'}"
 
     input:
     tuple val(meta), path(h5ad, arity: 1)

@@ -15,7 +15,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [id: 'test'],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679758_filtered_matrix.seurat.rds', checkIfExists: true)
                     ]
@@ -43,7 +43,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [id: 'test'],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679758_filtered_matrix.seurat.rds', checkIfExists: true)
                     ]
@@ -69,7 +69,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [id: 'test'],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679757_filtered_matrix.sce.rds', checkIfExists: true)
                     ]
@@ -97,7 +97,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                         [id: 'test'],
                         file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679757_filtered_matrix.sce.rds', checkIfExists: true)
                     ]

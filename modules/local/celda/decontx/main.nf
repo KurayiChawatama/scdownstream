@@ -8,6 +8,7 @@ process CELDA_DECONTX {
     tuple val(meta), path(h5ad), path(raw)
     val(batch_col)
     val(input_layer)
+    val(output_layer)
 
     output:
     tuple val(meta), path("*.h5ad"), emit: h5ad
@@ -18,7 +19,6 @@ process CELDA_DECONTX {
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    output_layer = task.ext.output_layer ?: "decontXcounts"
     template 'decontx.R'
 
     stub:

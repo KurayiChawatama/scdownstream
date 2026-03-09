@@ -4,8 +4,8 @@ process ADATA_ENTROPY {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/pyyaml_scanpy:158b12038812cf13':
-        'community.wave.seqera.io/library/pyyaml_scanpy:61c9ab8e312bbe0a' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fd/fd27aeaf160eaba9a58c029e08f1da74051aa292c2fb043a5dd68fddcde3af93/data':
+        'community.wave.seqera.io/library/pyyaml_scanpy:3c9e9f631f45553d' }"
 
     input:
     tuple val(meta), path(h5ad)

@@ -4,8 +4,8 @@ process LIANA_RANKAGGREGATE {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/liana:1.4.0--pyhdfd78af_0':
-        'biocontainers/liana:1.4.0--pyhdfd78af_0' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/e8/e83ce3d883af5a7be7f05e740fffaf0fff63b5f13e9bf175af9465e91c8cfda2/data' :
+        'community.wave.seqera.io/library/liana_pyyaml:776fdd7103df146d' }"
 
     input:
     tuple val(meta), path(h5ad)
@@ -22,4 +22,12 @@ process LIANA_RANKAGGREGATE {
     obs_key = meta.obs_key ?: "leiden"
     prefix = task.ext.prefix ?: "${meta.id}"
     template 'rank_aggregate.py'
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch "${prefix}.h5ad"
+    touch "${prefix}.pkl"
+    touch "versions.yml"
+    """
 }

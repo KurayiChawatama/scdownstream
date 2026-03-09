@@ -1,0 +1,196 @@
+{
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_characteristic_genes.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "test_characteristic_genes.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "test_characteristic_genes.png:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "test_characteristic_genes_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "4": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_characteristic_genes.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "multiqc_files": [
+                    "test_characteristic_genes_mqc.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "plots": [
+                    "test_characteristic_genes.png:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "uns": [
+                    "test_characteristic_genes.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-18T21:23:45.231170376"
+    },
+    "Should run with label subsetting": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    "versions.yml:md5,0b41ff9046b5903a6232224708a00f25"
+                ],
+                "h5ad": [
+                    
+                ],
+                "multiqc_files": [
+                    
+                ],
+                "plots": [
+                    
+                ],
+                "uns": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,0b41ff9046b5903a6232224708a00f25"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.7"
+        },
+        "timestamp": "2026-01-18T18:32:05.747363169"
+    },
+    "Should run without failures": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_characteristic_genes.h5ad:md5,7c7c5144449ac1d306952ed881fae1c2"
+                    ]
+                ],
+                "1": [
+                    "test_characteristic_genes.pkl:md5,245fa879997833b6ca01bc79d7386dd0"
+                ],
+                "2": [
+                    "test_characteristic_genes.png:md5,815b6c265fa0755cf97abee84e43f156"
+                ],
+                "3": [
+                    "test_characteristic_genes_mqc.json:md5,ecf65311648cb74e74c763935b57195d"
+                ],
+                "4": [
+                    "versions.yml:md5,0b41ff9046b5903a6232224708a00f25"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_characteristic_genes.h5ad:md5,7c7c5144449ac1d306952ed881fae1c2"
+                    ]
+                ],
+                "multiqc_files": [
+                    "test_characteristic_genes_mqc.json:md5,ecf65311648cb74e74c763935b57195d"
+                ],
+                "plots": [
+                    "test_characteristic_genes.png:md5,815b6c265fa0755cf97abee84e43f156"
+                ],
+                "uns": [
+                    "test_characteristic_genes.pkl:md5,245fa879997833b6ca01bc79d7386dd0"
+                ],
+                "versions": [
+                    "versions.yml:md5,0b41ff9046b5903a6232224708a00f25"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T11:49:32.705688144"
+    },
+    "Should run with condition subsetting": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_characteristic_genes.h5ad:md5,dde4602d11bb542432efdb76a961d7fc"
+                    ]
+                ],
+                "1": [
+                    "test_characteristic_genes.pkl:md5,0a6f461520d9a7460b7aae2f0cbf18d8"
+                ],
+                "2": [
+                    "test_characteristic_genes.png:md5,67995cde5e0a6253854bdd879c8fc6d8"
+                ],
+                "3": [
+                    "test_characteristic_genes_mqc.json:md5,93109f45acee4a675c662901eebd84eb"
+                ],
+                "4": [
+                    "versions.yml:md5,0b41ff9046b5903a6232224708a00f25"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_characteristic_genes.h5ad:md5,dde4602d11bb542432efdb76a961d7fc"
+                    ]
+                ],
+                "multiqc_files": [
+                    "test_characteristic_genes_mqc.json:md5,93109f45acee4a675c662901eebd84eb"
+                ],
+                "plots": [
+                    "test_characteristic_genes.png:md5,67995cde5e0a6253854bdd879c8fc6d8"
+                ],
+                "uns": [
+                    "test_characteristic_genes.pkl:md5,0a6f461520d9a7460b7aae2f0cbf18d8"
+                ],
+                "versions": [
+                    "versions.yml:md5,0b41ff9046b5903a6232224708a00f25"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-21T11:51:47.400154536"
+    }
+}

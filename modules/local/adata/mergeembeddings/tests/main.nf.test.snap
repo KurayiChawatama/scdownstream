@@ -1,0 +1,137 @@
+{
+    "Should merge scanvi embeddings with labels": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "scanvi"
+                        },
+                        "scanvi.h5ad:md5,7ce0ad23e591eab5384c9096edd58915"
+                    ]
+                ],
+                "1": [
+                    "scanvi.pkl:md5,d13f5223432c2f05328df65754d5d6ea"
+                ],
+                "2": [
+                    "X_scanvi.pkl:md5,08ee35399644eec4525c1ca8b5b5100f"
+                ],
+                "3": [
+                    "versions.yml:md5,33fef2961f0e9f357e9b990b96481c96"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "scanvi"
+                        },
+                        "scanvi.h5ad:md5,7ce0ad23e591eab5384c9096edd58915"
+                    ]
+                ],
+                "obs": [
+                    "scanvi.pkl:md5,d13f5223432c2f05328df65754d5d6ea"
+                ],
+                "obsm": [
+                    "X_scanvi.pkl:md5,08ee35399644eec4525c1ca8b5b5100f"
+                ],
+                "versions": [
+                    "versions.yml:md5,33fef2961f0e9f357e9b990b96481c96"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-01-16T22:15:50.402815924"
+    },
+    "Should run without failures - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "scvi"
+                        },
+                        "scvi.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "scvi.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "X_scvi.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "3": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "scvi"
+                        },
+                        "scvi.h5ad:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "obs": [
+                    "scvi.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "obsm": [
+                    "X_scvi.pkl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-01-16T22:16:01.692890265"
+    },
+    "Should merge scvi embeddings": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "scvi"
+                        },
+                        "scvi.h5ad:md5,0dfaf6fec8668c601255b3e0ba9b304f"
+                    ]
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    "X_scvi.pkl:md5,3458f8a6253838620764a7d5705891ab"
+                ],
+                "3": [
+                    "versions.yml:md5,33fef2961f0e9f357e9b990b96481c96"
+                ],
+                "h5ad": [
+                    [
+                        {
+                            "id": "scvi"
+                        },
+                        "scvi.h5ad:md5,0dfaf6fec8668c601255b3e0ba9b304f"
+                    ]
+                ],
+                "obs": [
+                    
+                ],
+                "obsm": [
+                    "X_scvi.pkl:md5,3458f8a6253838620764a7d5705891ab"
+                ],
+                "versions": [
+                    "versions.yml:md5,33fef2961f0e9f357e9b990b96481c96"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.6"
+        },
+        "timestamp": "2026-01-16T22:15:35.923090452"
+    }
+}

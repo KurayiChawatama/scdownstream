@@ -38,31 +38,34 @@ sample3,/absolute/path/to/sample3.csv
 There are a couple of optional columns that can be used for more advanced features:
 
 ```csv title="samplesheet.csv"
-sample,filtered,unfiltered,batch_col,label_col,unknown_label,min_genes,min_cells,min_counts_cell,min_counts_gene
-sample1,/absolute/path/to/sample1_filtered.h5ad,/absolute/path/to/sample1.h5ad,batch,cell_type,unknown,1,2,3,4
-sample2,relative/path/to/sample2_filtered.rds,relative/path/to/sample2.rds,batch_id,annotation,unannotated,5,6,7,8
-sample3,/absolute/path/to/sample3_filtered.csv,/absolute/path/to/sample3.csv,,,,9,10,11,12
+sample,filtered,unfiltered,batch_col,label_col,condition_col,unknown_label,min_genes,min_cells,min_counts_cell,min_counts_gene,expected_cells,ambient_correction,ambient_corrected_integration
+sample1,/absolute/path/to/sample1_filtered.h5ad,/absolute/path/to/sample1.h5ad,batch,cell_type,condition,unknown,1,2,3,4,5000,true,false
+sample2,relative/path/to/sample2_filtered.rds,relative/path/to/sample2.rds,batch_id,annotation,condition,unannotated,5,6,7,8,3000,false,
+sample3,/absolute/path/to/sample3_filtered.csv,/absolute/path/to/sample3.csv,,,,,9,10,11,12,,true,true
 ```
 
-For CSV input files, specifying the `batch_col`, `label_col`, and `unknown_label` columns will not have any effect, as no additional metadata is available in the CSV file.
+For CSV input files, specifying the `batch_col`, `label_col`, `condition_col`, and `unknown_label` columns will not have any effect, as no additional metadata is available in the CSV file.
 
-| Column                | Description                                                                                                                                                                                                                                                                                                                                                                                                         |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`              | Unique sample identifier. Will be added to the pipeline output objects as `sample` column.                                                                                                                                                                                                                                                                                                                          |
-| `filtered`            | May contain paths to `h5ad`, `h5`, `rds`, or `csv` files. `rds` files may contain any object that can be converted to a `SingleCellExperiment` using the [Seurat `as.SingleCellExperiment`](https://satijalab.org/seurat/reference/as.singlecellexperiment) function. `csv` files should contain a matrix with genes as columns and cells as rows.                                                                  |
-| `unfiltered`          | Same as `filtered`, but for the unfiltered cellranger or nf-core/scrnaseq output. If not provided, only `decontX` can be used for ambient RNA removal.                                                                                                                                                                                                                                                              |
-| `batch_col`           | Column in the input file containing batch information. If not provided, the entire input object will be considered as one batch. If the `batch_col` is something else than `batch`, it will be renamed to `batch` during pipeline execution.                                                                                                                                                                        |
-| `symbol_col`          | Column in the input file containing gene symbol information. Defaults to `index`. There are two special values that can be used: `index` and `none`. `index` will use the row names of the matrix as gene symbols. `none` will trigger the pipeline to perform gene symbol conversion using MyGene.info based on the `geneid_col`. The values from `symbol_col` will be set as the index during pipeline execution. |
-| `geneid_col`          | Column in the input file containing gene identifier information. Defaults to `index`. Only used if `symbol_col` is set to `none`.                                                                                                                                                                                                                                                                                   |
-| `label_col`           | Column in the input file containing cell type information. Defaults to `label`. If the column does not exist in the input object, the pipeline will create a new column and put `unknown` in it. If the `label_col` is something else than `label`, it will be renamed to `label` during pipeline execution.                                                                                                        |
-| `unknown_label`       | Value in the `label_col` column that should be considered as unknown. Defaults to `unknown`. If the `unknown_label` is something else than `unknown`, it will be renamed to `unknown` during pipeline execution. If trying to perform integration with scANVI, more than one unique label other than `unknown` must exist in the input data.                                                                        |
-| `counts_layer`        | Layer in the input file containing the raw counts matrix. Defaults to `X`.                                                                                                                                                                                                                                                                                                                                          |
-| `min_genes`           | Minimum number of genes required for a cell to be considered. Defaults to `1`.                                                                                                                                                                                                                                                                                                                                      |
-| `min_cells`           | Minimum number of cells required for a gene to be considered. Defaults to `1`.                                                                                                                                                                                                                                                                                                                                      |
-| `min_counts_cell`     | Minimum number of counts required for a cell to be considered. Defaults to `1`.                                                                                                                                                                                                                                                                                                                                     |
-| `min_counts_gene`     | Minimum number of counts required for a gene to be considered. Defaults to `1`.                                                                                                                                                                                                                                                                                                                                     |
-| `expected_cells`      | Number of expected cells, used as input to Cellbender.                                                                                                                                                                                                                                                                                                                                                              |
-| `max_mito_percentage` | Maximum percentage of mitochondrial reads for a cell to be considered. Defaults to `100`.                                                                                                                                                                                                                                                                                                                           |
+| Column                          | Description                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sample`                        | Unique sample identifier. Will be added to the pipeline output objects as `sample` column.                                                                                                                                                                                                                                                                                                                          |
+| `filtered`                      | May contain paths to `h5ad`, `h5`, `rds`, or `csv` files. `rds` files may contain any object that can be converted to a `SingleCellExperiment` using the [Seurat `as.SingleCellExperiment`](https://satijalab.org/seurat/reference/as.singlecellexperiment) function. `csv` files should contain a matrix with genes as columns and cells as rows.                                                                  |
+| `unfiltered`                    | Same as `filtered`, but for the unfiltered cellranger or nf-core/scrnaseq output. If not provided, only `decontX` can be used for ambient RNA removal.                                                                                                                                                                                                                                                              |
+| `batch_col`                     | Column in the input file containing batch information. If not provided, the entire input object will be considered as one batch. If the `batch_col` is something else than `batch`, it will be renamed to `batch` during pipeline execution.                                                                                                                                                                        |
+| `symbol_col`                    | Column in the input file containing gene symbol information. Defaults to `index`. There are two special values that can be used: `index` and `none`. `index` will use the row names of the matrix as gene symbols. `none` will trigger the pipeline to perform gene symbol conversion using MyGene.info based on the `geneid_col`. The values from `symbol_col` will be set as the index during pipeline execution. |
+| `geneid_col`                    | Column in the input file containing gene identifier information. Defaults to `index`. Only used if `symbol_col` is set to `none`.                                                                                                                                                                                                                                                                                   |
+| `label_col`                     | Column in the input file containing cell type information. Defaults to `label`. If the column does not exist in the input object, the pipeline will create a new column and put `unknown` in it. If the `label_col` is something else than `label`, it will be renamed to `label` during pipeline execution.                                                                                                        |
+| `condition_col`                 | Column in the input file containing condition information (e.g. disease state, treatment). If the column does not exist in the input object, the pipeline will create a new column and put `unknown` in it. If the `condition_col` is something else than `condition`, it will be renamed to `condition` during pipeline execution.                                                                                 |
+| `unknown_label`                 | Value in the `label_col` column that should be considered as unknown. Defaults to `unknown`. If the `unknown_label` is something else than `unknown`, it will be renamed to `unknown` during pipeline execution. If trying to perform integration with scANVI, more than one unique label other than `unknown` must exist in the input data.                                                                        |
+| `counts_layer`                  | Layer in the input file containing the raw counts matrix. Defaults to `X`.                                                                                                                                                                                                                                                                                                                                          |
+| `min_genes`                     | Minimum number of genes required for a cell to be considered. Defaults to `1`.                                                                                                                                                                                                                                                                                                                                      |
+| `min_cells`                     | Minimum number of cells required for a gene to be considered. Defaults to `1`.                                                                                                                                                                                                                                                                                                                                      |
+| `min_counts_cell`               | Minimum number of counts required for a cell to be considered. Defaults to `1`.                                                                                                                                                                                                                                                                                                                                     |
+| `min_counts_gene`               | Minimum number of counts required for a gene to be considered. Defaults to `1`.                                                                                                                                                                                                                                                                                                                                     |
+| `expected_cells`                | Number of expected cells, used as input to CellBender for empty droplet detection.                                                                                                                                                                                                                                                                                                                                  |
+| `max_mito_percentage`           | Maximum percentage of mitochondrial reads for a cell to be considered. Defaults to `100`.                                                                                                                                                                                                                                                                                                                           |
+| `ambient_correction`            | Whether to perform ambient RNA correction for this sample. Set to `true` to use the globally configured method, `false` to skip ambient correction for this sample. Defaults to `true`.                                                                                                                                                                                                                             |
+| `ambient_corrected_integration` | Whether to use ambient-corrected counts for integration for this sample. Set to `true` to use corrected counts in downstream integration, `false` to store them only as additional layers. Can override the global `--ambient_corrected_integration` parameter. Defaults to global setting.                                                                                                                         |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
 
@@ -157,7 +160,7 @@ The pipeline will perform the preprocessing steps on the new samples as usual. D
 This can be useful if you have assigned cell type annotations to the integrated object and want to perform further analysis based on these annotations.
 :::
 
-If you want to run tasks after the integration step without performing integration, you can provide a previous result of the pipeline as the `base_adata` parameter. You do not need to provide a samplesheet via the `input` parameter in this case. In order to let the pipeline know which integration embeddings should be used, you need to provide the `base_embeddings` parameter. If you stored the labels (e.g. cell type annotations) in a column other than `label`, you can provide the column name via the `base_label_col` parameter.
+If you want to run tasks after the integration step without performing integration, you can provide a previous result of the pipeline as the `base_adata` parameter. You do not need to provide a samplesheet via the `input` parameter in this case. In order to let the pipeline know which integration embeddings should be used, you need to provide the `base_embeddings` parameter. If you stored the labels (e.g. cell type annotations) in a column other than `label`, you can provide the column name via the `base_label_col` parameter. Similarly, if you stored the condition information in a column other than `condition`, you can provide the column name via the `base_condition_col` parameter.
 
 The pipeline will then re-execute the tasks after the integration step without performing integration again. Most interestingly, the pipeline will generate cell type specific UMAPs, clusterings, and PAGA graphs, if the `clustering_per_label` parameter is set to `true`.
 
@@ -216,6 +219,42 @@ The first part (`--no-mount tmp --writable-tmpfs --nv`) is set by default in the
 
 For different executors, the configuration might look different. Once a wider range of users have tested the GPU support, we will provide more detailed instructions for different executors.
 
+### Ambient RNA correction
+
+Ambient RNA correction removes contaminating RNA from cell-free droplets that can confound single-cell analysis. The pipeline supports multiple ambient RNA correction methods that can be configured both globally and per-sample.
+
+The pipeline allows you to select an ambient RNA correction method globally using the `--ambient_correction` parameter. Available methods include `decontx` (default), `cellbender`, `soupx`, `scar`, or `none` to skip correction entirely:
+
+```bash
+nextflow run nf-core/scdownstream --ambient_correction cellbender --input samplesheet.csv --outdir results
+```
+
+For finer control, you can disable ambient RNA correction for specific samples by setting `ambient_correction` to `false` in your samplesheet:
+
+```csv title="samplesheet.csv"
+sample,filtered,unfiltered,ambient_correction
+sample1,/path/to/sample1_filtered.h5ad,/path/to/sample1.h5ad,true
+sample2,/path/to/sample2_filtered.h5ad,/path/to/sample2.h5ad,false
+```
+
+By default, the pipeline stores ambient-corrected counts as additional layers in the AnnData object (e.g., `ambient_corrected_decontx`) while keeping the original raw counts in the `X` layer. This means all downstream analysis including integration uses the raw counts, with corrected counts available for optional inspection.
+
+If you want to use the ambient-corrected counts for integration instead, you can enable this behavior globally or per sample:
+
+```bash
+nextflow run nf-core/scdownstream --ambient_corrected_integration true --input samplesheet.csv --outdir results
+```
+
+```csv title="samplesheet.csv"
+sample,filtered,unfiltered,ambient_corrected_integration
+sample1,/path/to/sample1_filtered.h5ad,/path/to/sample1.h5ad,true
+sample2,/path/to/sample2_filtered.h5ad,/path/to/sample2.h5ad,false
+```
+
+:::warning
+When `ambient_corrected_integration` is enabled, the corrected counts replace the raw counts in the `X` layer, and the original raw counts are no longer available.
+:::
+
 ### Updating the pipeline
 
 When you run the above command, Nextflow automatically pulls the pipeline code from GitHub and stores it as a cached version. When running the pipeline after this, it will always use the cached version if available - even if the pipeline has been updated since. To make sure that you're running the latest version of the pipeline, make sure that you regularly update the cached version of the pipeline:
@@ -270,7 +309,7 @@ If `-profile` is not specified, the pipeline will run locally and expect all sof
 - `shifter`
   - A generic configuration profile to be used with [Shifter](https://nersc.gitlab.io/development/shifter/how-to-use/)
 - `charliecloud`
-  - A generic configuration profile to be used with [Charliecloud](https://hpc.github.io/charliecloud/)
+  - A generic configuration profile to be used with [Charliecloud](https://charliecloud.io/)
 - `apptainer`
   - A generic configuration profile to be used with [Apptainer](https://apptainer.org/)
 - `wave`

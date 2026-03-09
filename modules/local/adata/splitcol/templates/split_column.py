@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import platform
+import importlib.metadata
 
 import anndata as ad
 import yaml
@@ -20,7 +21,7 @@ for value in adata.obs[column].unique():
 versions = {
     "${task.process}": {
         "python": platform.python_version(),
-        "anndata": ad.__version__
+        "anndata": importlib.metadata.version("anndata"),
     }
 }
 

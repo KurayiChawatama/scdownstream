@@ -15,7 +15,7 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = Channel.fromList([
+                input[0] = channel.fromList([
                     [[id: 'SRR28679756'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true), file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_raw_matrix.h5ad', checkIfExists: true)],
                     [[id: 'SRR28679757'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679757_filtered_matrix.sce.rds', checkIfExists: true), file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679757_raw_matrix.sce.rds', checkIfExists: true)],
                     [[id: 'SRR28679758'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679758_filtered_matrix.seurat.rds', checkIfExists: true), file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679758_raw_matrix.seurat.rds', checkIfExists: true)],
@@ -44,7 +44,7 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = Channel.fromList([
+                input[0] = channel.fromList([
                     [[id: 'SRR28679756'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_filtered_matrix.h5ad', checkIfExists: true), file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/h5ad/SRR28679756_raw_matrix.h5ad', checkIfExists: true)],
                     [[id: 'SRR28679757'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679757_filtered_matrix.sce.rds', checkIfExists: true), file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679757_raw_matrix.sce.rds', checkIfExists: true)],
                     [[id: 'SRR28679758'], file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679758_filtered_matrix.seurat.rds', checkIfExists: true), file(params.modules_testdata_base_path + 'genomics/homo_sapiens/scrnaseq/rds/SRR28679758_raw_matrix.seurat.rds', checkIfExists: true)],

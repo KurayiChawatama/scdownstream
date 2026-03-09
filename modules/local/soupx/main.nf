@@ -6,7 +6,9 @@ process SOUPX {
 
     input:
     tuple val(meta), path(h5ad), path(raw)
+    val(cluster_resolution)
     val(input_layer)
+    val(output_layer)
 
     output:
     tuple val(meta), path("${prefix}.h5ad"), emit: h5ad
@@ -17,8 +19,6 @@ process SOUPX {
 
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
-    cluster_resolution = task.ext.cluster_resolution ?: 0.8
-    output_layer = task.ext.output_layer ?: "ambient_corrected"
     template 'soupx.R'
 
     stub:
